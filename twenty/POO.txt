@@ -1,0 +1,65 @@
+PHP高级语法-PDO
+
+1、 概述
+     数据库有很多种  mySQL sqlserver oracle  db2
+     通过php去连接数据库怎么连接呢,不同的数据库连接的时候使用的扩展库不一样
+     有没有一套扩展库可以直接用来连接所有的数据库呢？有 PDO(php data object)
+     mysqli
+     pdo
+     驱动
+2、 使用(手册)
+
+    主要是这3个类 PDO PDOStatement PDOException 的学习
+    dsb(data source name)
+    1、 字符串形式
+        'mysql:host=localhost;dbname=bingbing;charset=utf8';
+    2、文件形式
+        $pdo = new PDO('uri:file:///Applications/http/sock','root','123456');
+    3、php.ini
+        pdo.dsn.lala ='mysql:host=localhost;dbname=bingbing;charset=utf-8'
+        $pdo = new PDO('lala','root','123456');
+    获取和设置信息
+       setAttribute
+          PDO::ATTR_CASE
+          PDO::ATTR_CASE
+          PDO::ATTR_AUTOCOMMIT
+       getAttribute
+       数组
+    错误模式
+       1、默认
+       2、警告
+         $pdo ->  setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+       3、异常
+         $pdo -> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+     PDO执行sql语句
+       exec 执行不要结果集的语句 比如 增删改
+       query 执行要结果集的语句 比如 查 desc
+       lastInsertId 最后插入语句的id号
+
+     事物处理
+       什么叫做事务？ 银行转账
+       [注]表引擎有两张 myisam(不支持)   innodb(支持）
+       $pdo->beginTransaction(); //开启一个事务
+       $pdo->commit();  提交事务
+       $pdo->rollback(); 回滚到初始状态
+
+     预处理语句
+       优点： 效率、安全（sql注入）
+       为了提高效率,我们要使用预处理语句
+       PDOStatement
+       prepare 预处理sql语句
+       execute 执行sql语句
+       增删改：
+         增加: $stmt = $pdo->prepare('insert into wukong(name,age,money) values(?,?,?)');
+       查（结果集）
+          fetch
+          fetchAll
+            模式如下几种：
+            PDO::FETCH_ASSOC
+            PDO::FETCH_NUM
+            PDO::FETCH_BOTH
+            PDO::FETCH_OBJ
+            setFetchMode 设置默认的提取模式
+            绑定列
+               $stmt = bindColumn('name',$name);
+               $stmt = fetch(PDO::FETCH_NUM)

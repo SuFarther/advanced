@@ -1,0 +1,53 @@
+PHP高级语法-杂项和try-catch
+
+
+
+1、函数
+    call_user_func  一个方法一个参数
+    call_user_func_array  一个方法一个数组
+    spl_autoload_register
+2、常量和有关函数
+   __NAMASPACE__  当前命名空间名
+   __CLASS__      当前类名
+   __NETHOD__     当前方法名
+   instanceof     判断一个对象是否属于当前类
+   class_alias    给类起别名
+   class_exists   判断类是否存在
+   get_class_methods 得到类所有的方法
+   get_class_vars    得到类所有的属性
+   get_class         根据对象得到当前类
+   interface_exists  判断接口是否存在
+   trait_exists      判断trait是否存在
+   method_exists     判断方法是否存在
+   property_exists   判断属性是否存在
+
+3、异常处理
+    生活中: A计划、B计划
+    代码中: 代码按照正常的逻辑执行,如果执行异常,就会执行另一套方案
+
+
+3、异常处理
+    生活中:  A计划、B计划
+    代码中:  代码按照正常的逻辑执行,如果出现异常,则执行事先准备好的另一套方案try
+    catch: 映射到代码中,try是尝试执行某一块代码,然后如果异常情况,那么需要需要手动
+    抛出异常(throw),抛出异常后,就会被catch捕货到。
+    [注]try-catch是一种结构,一个try必须至少对应一个catch
+    [注]try和catch之间不能加任何代码
+
+    流程: 程序正常进行try结构中的代码,如果try中抛出异常,try抛出异常后面的代码都不会执行,
+    那么就会执行catch执行catch中的代码,然后继续向下执行,如果没有抛出异常,则执行完try中的代码
+    之后,程序继续向下执行
+
+    Exception
+      官方的异常处理类,是所有异常类的基类
+      getMessage:得到异常消息
+      getCode:得到异常代号
+    自定义异常处理类
+      final:如果用来修饰类,那么代表这个类不能被继承,如果用来修饰方法,这个方法不能被重写
+      这个方法不能被重写
+      要继承自官方的异常处理类,方法自己随便添加,父类方法注意能不能重写
+      [注]如果多个catch,要将自定义的异常类写到上面,将官方异常类写到下面嵌套
+    自定义异常处理函数(了解)
+      set_exception_handler('test');
+
+      注册一个函数,当抛出异常的时候,就会被这个函数自动捕获到,该函数有一个参数,参数就是异常对象

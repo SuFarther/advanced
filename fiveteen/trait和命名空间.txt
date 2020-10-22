@@ -1,0 +1,37 @@
+PHP高级语法-trait和命名1空间
+
+1、trait(特性)
+     trait就是用来模拟实现多继承的
+     instance:实例
+
+      定义trait要以trait关键字开头,然后里面的写法和类的写法一模一样
+      一般情况下,在trait中我们不加成员属性,只加成员方法
+
+      trait不能实例化
+      trait中的方法想让(子类)来使用,该方法必须是public
+      trait可以嵌套trait
+
+      方法名冲突
+      use Dun,Sword{
+         Dun::attack insteadof Sword;
+         Dun::attack as DunAttack;
+         Sword::attack as Sattack;
+      }
+
+
+      命名空间
+         在一个文件中如果出现了Person类，能不能在定义一个Person类
+         命名空间就是文件夹。在不同的命名空间下面就可以有相同的类名
+         namespace:命名空间
+         use:使用
+
+
+        1、第一个命名空间的命名:前面不能有任何的代码
+        2、根空间 子空间
+          根空间   \
+          你的hello空间其实就是  \hello
+          你的world空间其实就是 \world
+          你的world空间下 hello\Dog ===> world\hello\Dog
+        3、use使用,  as使用
+           use \hello\test\Dog as SmallDog;
+           use \World\Dog as BinDog;
